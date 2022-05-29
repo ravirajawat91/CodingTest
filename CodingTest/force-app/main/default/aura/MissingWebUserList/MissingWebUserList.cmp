@@ -1,0 +1,43 @@
+<!--
+ - Created by jesus.cantero on 13/05/2021.
+ -->
+
+<aura:component description="MissingWebUserList" implements="force:appHostable" controller="MissingWebUserListCtrl">
+    
+    <!--aura handler with waiting and donewaiting events-->
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+     
+    <!--component attributs -->
+    <aura:attribute name="spinner" type="boolean" default="FALSE"/>
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="dataToUpdate" type="List"/>
+    <aura:attribute name="columns" type="List"/>
+
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+
+    <!--loading spinner start-->
+    <aura:if isTrue="{!v.spinner}">
+        <div aura:id="spinnerId" class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Importing the reocrds in salesforce...</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+    <!-- Loading spinner end-->
+    
+    <lightning:card title="Missing User to Import">
+        <aura:set attribute="actions">
+            <lightning:button label="Import Missing Record" variant="brand" onclick="{! c.handleImport }"/>
+        </aura:set>
+        <p class="slds-p-horizontal_small">
+            <lightning:datatable
+                    keyField="id"
+                    data="{! v.data }"
+                    columns="{! v.columns }"
+                    hideCheckboxColumn="true"/>
+        </p>
+    </lightning:card>
+</aura:component>

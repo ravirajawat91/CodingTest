@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>premiumCompanyNames</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>premiumCompanyNames</shortDescription>
+        <value>Considine-Lockman;Johns Group;</value>
+    </labels>
+</CustomLabels>

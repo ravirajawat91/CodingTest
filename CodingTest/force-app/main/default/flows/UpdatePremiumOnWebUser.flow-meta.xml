@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <constants>
+        <name>CompanyName2</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Johns Group</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>companyNames</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Considine- Lockman</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <description>checking the company names</description>
+        <name>CheckCompany</name>
+        <label>CheckCompany</label>
+        <locationX>182</locationX>
+        <locationY>311</locationY>
+        <defaultConnector>
+            <targetReference>PremiumRecordFalse</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>NamesIncluded</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>PremierCompniesNameList</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>$Record.Company__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Company__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record__Prior.Company__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>premiumTrueUpdate</targetReference>
+            </connector>
+            <label>NamesIncluded</label>
+        </rules>
+    </decisions>
+    <description>updating the web user record if company name is from the list(“Johns Group”,“Considine-
+Lockman”)</description>
+    <formulas>
+        <description>Companies List which will become premiem</description>
+        <name>PremierCompniesNameList</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.premiumCompanyNames}</expression>
+    </formulas>
+    <interviewLabel>UpdatePremiumOnWebUser {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>UpdatePremiumOnWebUser</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>is company Names are not present in the given names(“Considine-
+Lockman”,“Johns Group”), it will be false</description>
+        <name>PremiumRecordFalse</name>
+        <label>PremiumRecordFalse</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>IsPremium__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>if company names are matched then premium checkbox should be true</description>
+        <name>premiumTrueUpdate</name>
+        <label>premiumTrueUpdate</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>IsPremium__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>CheckCompany</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Company__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue/>
+            </value>
+        </filters>
+        <object>Web_User__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
