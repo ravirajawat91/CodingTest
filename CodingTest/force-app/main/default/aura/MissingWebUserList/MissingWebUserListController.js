@@ -13,7 +13,7 @@
             {label: 'Company Name', fieldName: 'companyName', type: 'text'}
         ]);
         
-        var action = cmp.get("c.getMissingUserCallout");
+        var action = cmp.get("c.getMissingUserCall");
         action.setCallback(this, function(response) {
             //helper.showSpinner();
             var state = response.getState();

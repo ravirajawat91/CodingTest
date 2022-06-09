@@ -6,11 +6,15 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>MissingUserRequestModelTest</apexClass>
+        <apexClass>MissingUserResponseModel</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>MissingUserResponseModel</apexClass>
+        <apexClass>MissingWebUserAdapter</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>MissingWebUserAdapterTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -18,7 +22,19 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>MissingWebUserListCtrl</apexClass>
+        <apexClass>MissingWebUserListController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>MissingWebUserListControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>MissingWebUserService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>MissingWebUserServiceTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

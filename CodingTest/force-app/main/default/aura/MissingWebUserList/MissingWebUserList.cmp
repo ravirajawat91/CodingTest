@@ -2,7 +2,7 @@
  - Created by jesus.cantero on 13/05/2021.
  -->
 
-<aura:component description="MissingWebUserList" implements="force:appHostable" controller="MissingWebUserListCtrl">
+<aura:component description="MissingWebUserList" implements="force:appHostable" controller="MissingWebUserListController">
     
     <!--aura handler with waiting and donewaiting events-->
     <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>

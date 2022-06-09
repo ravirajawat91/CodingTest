@@ -56,8 +56,6 @@ public class MissingUserResponseModel{
         adr.street='Kulas Light';
         adr.suite='Apt. 556';
         adr.zipcode='92998-3874';
-        //adr.geo.put('lat','-37.3159');
-        //adr.geo.put('lng','81.1496');
   
         missingUserModel.address = adr;
 		
@@ -68,17 +66,4 @@ public class MissingUserResponseModel{
     
         return missingUserModel;
     }
-/*
-    public Boolean equals(Object obj) {
-        if (obj instanceof MissingUserResponseModel) {
-            MissingUserResponseModel warningModel = (MissingUserResponseModel) obj;
-            return this.webId == warningModel.webId
-                && this.name == warningModel.name
-                && this.username == warningModel.username
-                && this.email == warningModel.email
-                && this.phone == warningModel.phone
-                && this.website == warningModel.website;
-        }
-        return false;
-    }*/
 }
